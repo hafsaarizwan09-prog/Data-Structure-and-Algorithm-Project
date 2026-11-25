@@ -3,7 +3,6 @@
 #include <limits>
 using namespace std;
 
-// Structure for storing book information
 struct BookNode
 {
     int id;
@@ -16,11 +15,9 @@ struct BookNode
     BookNode *prev;
 };
 
-// Head and tail pointers
 BookNode *head = NULL;
 BookNode *tail = NULL;
 
-// Check whether a book ID already exists
 bool isDuplicate(int bookID)
 {
     if (head == NULL)
@@ -44,7 +41,6 @@ bool isDuplicate(int bookID)
     return false;
 }
 
-// Add a new book to the catalogue
 void addBook()
 {
     int id;
@@ -74,7 +70,6 @@ void addBook()
     newNode->available = true;
     newNode->issuedTo = "";
 
-    // First book
     if (head == NULL)
     {
         head = newNode;
@@ -83,7 +78,6 @@ void addBook()
         newNode->next = head;
         newNode->prev = tail;
     }
-    // Additional books
     else
     {
         newNode->next = head;
@@ -98,7 +92,6 @@ void addBook()
     cout << "\nBook added successfully!\n";
 }
 
-// Book Management Menu
 void bookManagement()
 {
     int choice;
@@ -128,8 +121,6 @@ void bookManagement()
 
     } while (choice != 2);
 }
-
-// Release dynamically allocated memory
 void clearCatalogue()
 {
     if (head == NULL)
