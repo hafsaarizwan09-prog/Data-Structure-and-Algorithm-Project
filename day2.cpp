@@ -3,7 +3,6 @@
 #include <limits>
 using namespace std;
 
-// Structure for storing book information
 struct BookNode
 {
     int id;
@@ -16,11 +15,9 @@ struct BookNode
     BookNode *prev;
 };
 
-// Head and tail pointers
 BookNode *head = NULL;
 BookNode *tail = NULL;
 
-// Check whether a book ID already exists
 bool isDuplicate(int bookID)
 {
     if (head == NULL)
@@ -44,7 +41,6 @@ bool isDuplicate(int bookID)
     return false;
 }
 
-// Day 1: Add a new book
 void addBook()
 {
     int id;
@@ -74,7 +70,6 @@ void addBook()
     newNode->available = true;
     newNode->issuedTo = "";
 
-    // First book
     if (head == NULL)
     {
         head = newNode;
@@ -83,7 +78,6 @@ void addBook()
         newNode->next = head;
         newNode->prev = tail;
     }
-    // Additional books
     else
     {
         newNode->next = head;
@@ -98,7 +92,6 @@ void addBook()
     cout << "\nBook added successfully!\n";
 }
 
-// Day 2: Display books from head to tail
 void displayBooks()
 {
     if (head == NULL)
@@ -133,7 +126,6 @@ void displayBooks()
     } while (temp != head);
 }
 
-// Day 2: Display books from tail to head
 void displayReverse()
 {
     if (head == NULL)
@@ -168,7 +160,6 @@ void displayReverse()
     } while (temp != tail);
 }
 
-// Day 2: Count all books in the circular list
 int countBooks()
 {
     if (head == NULL)
@@ -189,7 +180,6 @@ int countBooks()
     return count;
 }
 
-// Day 1 and Day 2: Book Management Menu
 void bookManagement()
 {
     int choice;
@@ -230,7 +220,6 @@ void bookManagement()
     } while (choice != 4);
 }
 
-// Release dynamically allocated memory
 void clearCatalogue()
 {
     if (head == NULL)
