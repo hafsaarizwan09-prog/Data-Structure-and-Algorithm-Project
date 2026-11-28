@@ -16,12 +16,10 @@ struct Book {
 Book* head = nullptr;
 Book* tail = nullptr;
 
-// Check whether the Circular Doubly Linked List is empty.
 bool isEmpty() {
     return head == nullptr;
 }
 
-// Search helper used by update and delete.
 Book* findBook(int bookID) {
     if (isEmpty()) {
         return nullptr;
@@ -37,8 +35,6 @@ Book* findBook(int bookID) {
 
     return nullptr;
 }
-
-// Display all information of one book.
 void displayBookInfo(Book* book) {
     cout << "\n---------- BOOK INFORMATION ----------\n";
     cout << "Book ID: " << book->id << '\n';
@@ -55,7 +51,6 @@ void displayBookInfo(Book* book) {
     cout << "--------------------------------------\n";
 }
 
-// Day 1: Add a new book at the end of the list.
 void addBook() {
     int id;
     cout << "\nEnter Book ID: ";
@@ -94,7 +89,6 @@ void addBook() {
     cout << "Book added successfully.\n";
 }
 
-// Display books from head to tail.
 void displayBooks() {
     if (isEmpty()) {
         cout << "\nNo books available.\n";
@@ -110,7 +104,6 @@ void displayBooks() {
     } while (current != head);
 }
 
-// Display books from tail to head.
 void reverseDisplay() {
     if (isEmpty()) {
         cout << "\nNo books available.\n";
@@ -125,8 +118,6 @@ void reverseDisplay() {
         current = current->prev;
     } while (current != tail);
 }
-
-// Count total nodes in the list.
 int countBooks() {
     if (isEmpty()) {
         return 0;
@@ -142,8 +133,6 @@ int countBooks() {
 
     return count;
 }
-
-// Day 3: Update title and author without changing other book information.
 void updateBook() {
     if (isEmpty()) {
         cout << "\nLibrary is empty. No book to update.\n";
@@ -171,11 +160,9 @@ void updateBook() {
     cout << "Enter New Author: ";
     getline(cin, current->author);
 
-    // ID, availability and issuedTo remain unchanged.
     cout << "Book details updated successfully.\n";
 }
 
-// Day 3: Delete a book, if it is not issued.
 void deleteBook() {
     if (isEmpty()) {
         cout << "\nLibrary is empty. No book to delete.\n";
@@ -198,25 +185,20 @@ void deleteBook() {
              << target->issuedTo << ".\n";
         return;
     }
-
-    // Case 1: The list contains only one node.
     if (target == head && target == tail) {
         head = nullptr;
         tail = nullptr;
     }
-    // Case 2: Delete the first node.
     else if (target == head) {
         head = head->next;
         head->prev = tail;
         tail->next = head;
     }
-    // Case 3: Delete the last node.
     else if (target == tail) {
         tail = tail->prev;
         tail->next = head;
         head->prev = tail;
     }
-    // Case 4: Delete a middle node.
     else {
         target->prev->next = target->next;
         target->next->prev = target->prev;
@@ -226,7 +208,6 @@ void deleteBook() {
     cout << "Book deleted successfully.\n";
 }
 
-// Day 4: Search for a book using its ID.
 void searchByID() {
     if (isEmpty()) {
         cout << "\nLibrary is empty. No books to search.\n";
@@ -238,8 +219,6 @@ void searchByID() {
     cin >> id;
 
     Book* current = head;
-
-    // Linear traversal through the circular list.
     do {
         if (current->id == id) {
             cout << "\nBook found successfully.\n";
@@ -253,7 +232,6 @@ void searchByID() {
     cout << "Book Not Found.\n";
 }
 
-// Day 4: Search using exact title matching.
 void searchByTitle() {
     if (isEmpty()) {
         cout << "\nLibrary is empty. No books to search.\n";
@@ -267,8 +245,6 @@ void searchByTitle() {
     getline(cin, searchTitle);
 
     Book* current = head;
-
-    // Exact comparison: case and spaces must match.
     do {
         if (current->title == searchTitle) {
             cout << "\nBook found successfully.\n";
@@ -282,7 +258,6 @@ void searchByTitle() {
     cout << "Book Not Found.\n";
 }
 
-// Search Books submenu.
 void searchBooksMenu() {
     int choice;
 
@@ -312,8 +287,6 @@ void searchBooksMenu() {
         }
     } while (choice != 3);
 }
-
-// Book Management submenu from previous days.
 void bookManagementMenu() {
     int choice;
 
@@ -392,8 +365,6 @@ int main() {
                 cout << "Invalid choice. Try again.\n";
         }
     } while (choice != 4);
-
-    // Release all dynamically allocated nodes before program termination.
     while (!isEmpty()) {
         Book* temp = head;
 
