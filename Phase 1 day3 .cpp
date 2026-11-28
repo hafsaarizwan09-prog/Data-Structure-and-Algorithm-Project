@@ -16,7 +16,6 @@ struct Book {
 Book* head = nullptr;
 Book* tail = nullptr;
 
-// Returns true when the circular doubly linked list is empty.
 bool isEmpty() {
     return head == nullptr;
 }
@@ -148,7 +147,6 @@ void updateBook() {
     cout << "Enter New Author: ";
     getline(cin, current->author);
 
-    // ID, availability and issuedTo are intentionally not changed.
     cout << "Book details updated successfully.\n";
 }
 
@@ -174,25 +172,20 @@ void deleteBook() {
              << target->issuedTo << ".\n";
         return;
     }
-
-    // Case 1: Only one node.
     if (target == head && target == tail) {
         head = nullptr;
         tail = nullptr;
     }
-    // Case 2: Deleting the first node.
     else if (target == head) {
         head = head->next;
         head->prev = tail;
         tail->next = head;
     }
-    // Case 3: Deleting the last node.
     else if (target == tail) {
         tail = tail->prev;
         tail->next = head;
         head->prev = tail;
     }
-    // Case 4: Deleting a middle node.
     else {
         target->prev->next = target->next;
         target->next->prev = target->prev;
@@ -266,8 +259,6 @@ int main() {
                 cout << "Invalid choice. Try again.\n";
         }
     } while (choice != 3);
-
-    // Release all dynamically allocated nodes before program termination.
     while (!isEmpty()) {
         Book* temp = head;
         if (head == tail) {
